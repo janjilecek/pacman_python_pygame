@@ -245,17 +245,15 @@ class GameRenderer:
                 if self._hero is None: break
                 self._hero.mouth_open = not self._hero.mouth_open
 
-        pressed = pygame.key.get_pressed()
-        if self._hero is None: return
-        if pressed[pygame.K_UP]:
-            self._hero.set_direction(Direction.UP)
-        elif pressed[pygame.K_LEFT]:
-            self._hero.set_direction(Direction.LEFT)
-        elif pressed[pygame.K_DOWN]:
-            self._hero.set_direction(Direction.DOWN)
-        elif pressed[pygame.K_RIGHT]:
-            self._hero.set_direction(Direction.RIGHT)
-
+            if event.type == pygame.KEYDOWN:
+                if event.key == pygame.K_UP:
+                    self._hero.set_direction(Direction.UP)
+                elif event.key == pygame.K_LEFT:
+                    self._hero.set_direction(Direction.LEFT)
+                elif event.key == pygame.K_DOWN:
+                    self._hero.set_direction(Direction.DOWN)
+                elif event.key == pygame.K_RIGHT:
+                    self._hero.set_direction(Direction.RIGHT)
 
 class MovableObject(GameObject):
     def __init__(self, in_surface, x, y, in_size: int, in_color=(255, 0, 0), is_circle: bool = False):
